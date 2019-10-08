@@ -1,63 +1,61 @@
 package no.simenbai.Chess.Game.Logic;
 
-import no.simenbai.Chess.Game.Enum.Pieces;
+import no.simenbai.Chess.Game.Datatypes.Piece;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import static no.simenbai.Chess.Game.Datatypes.Piece.PieceColor.*;
+import static no.simenbai.Chess.Game.Datatypes.Piece.PieceType.*;
 
 public class Board {
-    private static Pieces[][] board;
+    private static Piece[][] board;
 
     public void createBoard() {
-        board = new Pieces[8][8];
+        board = new Piece[8][8];
         cleanBoard();
-        board[0][0] = Pieces.QUEEN;
-        System.out.println(board[1][1]);
     }
 
     public void resetBoard() {
         cleanBoard();
         //ROOK
-        board[0][0] = Pieces.ROOK;
-        board[7][0] = Pieces.ROOK;
-        board[7][7] = Pieces.ROOK;
-        board[0][7] = Pieces.ROOK;
+        board[0][0] = new Piece(ROOK, BLACK);
+        board[7][0] = new Piece(ROOK, BLACK);
+        board[0][7] = new Piece(ROOK, WHITE);
+        board[7][7] = new Piece(ROOK, WHITE);
 
         //Knight
-        board[1][0] = Pieces.KNIGHT;
-        board[6][0] = Pieces.KNIGHT;
-        board[6][7] = Pieces.KNIGHT;
-        board[1][7] = Pieces.KNIGHT;
+        board[1][0] = new Piece(KNIGHT, BLACK);
+        board[6][0] = new Piece(KNIGHT, BLACK);
+        board[6][7] = new Piece(KNIGHT, WHITE);
+        board[1][7] = new Piece(KNIGHT, WHITE);
 
         //Bishop
-        board[2][0] = Pieces.BISHOP;
-        board[5][0] = Pieces.BISHOP;
-        board[5][7] = Pieces.BISHOP;
-        board[2][7] = Pieces.BISHOP;
+        board[2][0] = new Piece(BISHOP, BLACK);
+        board[5][0] = new Piece(BISHOP, BLACK);
+        board[5][7] = new Piece(BISHOP, WHITE);
+        board[2][7] = new Piece(BISHOP, WHITE);
 
         //King
-        board[3][0] = Pieces.KING;
-        board[4][7] = Pieces.KING;
+        board[3][0] = new Piece(KING, BLACK);
+        board[4][7] = new Piece(KING, WHITE);
 
         //Queen
-        board[4][0] = Pieces.QUEEN;
-        board[3][7] = Pieces.QUEEN;
+        board[4][0] = new Piece(QUEEN, BLACK);
+        board[3][7] = new Piece(QUEEN, WHITE);
 
         //Pawn
         for (int i = 0; i < 8; i++) {
-            board[i][1] = Pieces.PAWN;
-            board[i][6] = Pieces.PAWN;
+            board[i][1] = new Piece(PAWN, BLACK);
+            board[i][6] = new Piece(PAWN, WHITE);
         }
     }
 
-    public Pieces[][] getBoard() {
+    public Piece[][] getBoard() {
         return board;
     }
 
     public void cleanBoard() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                board[i][j] = Pieces.EMPTY;
+                board[i][j] = new Piece(Piece.PieceType.EMPTY, Piece.PieceColor.EMPTY);
             }
         }
     }
